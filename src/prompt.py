@@ -1,63 +1,86 @@
 class Prompt:
+
     @staticmethod
     def prompt1(ID=0):
+
         if ID == 0:
-            prompt_text = """Your task: Condense a video transcript into a captivating and informative 250-word summary that highlights key points and engages viewers.
+            prompt_text = """
+You are an expert content summarizer specializing in transforming long YouTube transcripts into clear, engaging summaries.
 
-Guidelines:
-    Focus on essential information: Prioritize the video's core messages, condensing them into point-wise sections.
-    Maintain clarity and conciseness: Craft your summary using accessible language, ensuring it's easily understood by a broad audience.
-    Capture the essence of the video: Go beyond mere listings. Integrate key insights and interesting aspects to create a narrative that draws readers in.
-    Word count: Aim for a maximum of 250 words.
+TASK
+Create a concise and engaging summary of the provided video transcript.
 
-Input:
-    The provided video transcript will be your content source.
+OBJECTIVE
+Condense the transcript into a structured summary that highlights the most important ideas, insights, and takeaways.
 
-Example (for illustration purposes only):
-    Setting the Stage: Briefly introduce the video's topic and context.
-    Key Points:
-        Point A: Describe the first crucial aspect with clarity and depth.
-        Point B: Elaborate on a second significant point.
-        (Continue listing and describing key points)
-    Conclusions: Summarize the video's main takeaways, leaving readers with a clear understanding and potential interest in learning more.
+OUTPUT STRUCTURE
 
-Additional Tips:
-    Tailor the tone: Adjust your language to resonate with the video's intended audience and overall style.
-    Weave in storytelling elements: Employ vivid descriptions and engaging transitions to make the summary more memorable.
-    Proofread carefully: Ensure your final summary is free of grammatical errors and typos.
+### 🎬 Video Overview
+Briefly introduce the topic and overall purpose of the video.
 
-By following these guidelines, you can effectively transform video transcripts into captivating and informative summaries, drawing in readers and conveying the video's essence effectively."""
+### 🔑 Key Points
+- **Point 1:** Clear explanation of the first major concept
+- **Point 2:** Important insight or argument
+- **Point 3:** Supporting idea, example, or explanation
+- Continue for all major topics discussed.
+
+### 📌 Key Takeaways
+Summarize the most important lessons or conclusions viewers should remember.
+
+CONSTRAINTS
+- Maximum length: **250 words**
+- Use **clear, simple language**
+- Avoid filler or repetition
+- Focus only on meaningful content
+- Maintain logical flow
+
+STYLE
+- Informative but engaging
+- Structured and easy to scan
+- Suitable for a broad audience
+
+INPUT
+The video transcript will be provided below.
+"""
 
         elif ID == "timestamp":
             prompt_text = """
-            Generate timestamps for main chapter/topics in a YouTube video transcript.
-            Given text segments with their time, generate timestamps for main topics discussed in the video. Format timestamps as hh:mm:ss and provide clear and concise topic titles.  
-           
-            Instructions:
-            1. List only topic titles and timestamps.
-            2. Do not explain the titles.
-            3. Include clickable URLs.
-            4. Provide output in Markdown format.
+You are an AI assistant that generates **chapter timestamps for YouTube videos**.
 
-            Markdown for output:
-            1. [hh:mm:ss](%VIDEO_URL?t=seconds) %TOPIC TITLE 1%
-            2. [hh:mm:ss](%VIDEO_URL?t=seconds) %TOPIC TITLE 2%
-            - and so on
+TASK
+Analyze the transcript segments and identify the **main topics or chapter breaks** in the video.
 
-            Markdown Example:
-            1. [00:05:23](https://youtu.be/hCaXor?t=323) Introduction
-            2. [00:10:45](https://youtu.be/hCaXor?t=645) Main Topic 1
-            3. [00:25:17](https://youtu.be/hCaXor?t=1517) Main Topic 2
-            - and so on
+OUTPUT FORMAT (STRICT)
 
-            The %VIDEO_URL% (YouTube video link) and transcript are provided below :
-            """
-            
+Provide output in **Markdown numbered list format**.
+
+1. [hh:mm:ss](%VIDEO_URL?t=seconds) Topic Title
+2. [hh:mm:ss](%VIDEO_URL?t=seconds) Topic Title
+
+RULES
+- Only include **major topic changes**
+- Titles must be **short and descriptive (3–6 words)**
+- Do NOT include explanations
+- Use timestamps from the transcript
+- Format timestamps exactly as **hh:mm:ss**
+- Ensure links are **clickable YouTube timestamps**
+
+EXAMPLE
+
+1. [00:00:00](https://youtu.be/example?t=0) Introduction
+2. [00:02:30](https://youtu.be/example?t=150) Problem Overview
+3. [00:07:10](https://youtu.be/example?t=430) Solution Explained
+4. [00:15:42](https://youtu.be/example?t=942) Practical Example
+5. [00:21:10](https://youtu.be/example?t=1270) Final Thoughts
+
+INPUT
+The transcript segments and video URL will be provided below.
+"""
+
         elif ID == "transcript":
-            prompt_text = """
-            """
+            prompt_text = """ """
 
         else:
-            prompt_text = "NA" 
+            prompt_text = "NA"
 
         return prompt_text

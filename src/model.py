@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-import google.generativeai as genai
+from google import genai
 from openai import OpenAI
 
 class Model:
@@ -8,26 +8,37 @@ class Model:
         load_dotenv()
 
     @staticmethod
-    def google_gemini(transcript, prompt, extra="", model_type="gemini-1.5-flash"):
+    def google_gemini(transcript, prompt, extra="", model_type="gemini-2.5-flash"):
         load_dotenv()
-        genai.configure(api_key=os.getenv("GOOGLE_GEMINI_API_KEY"))
-        model = genai.GenerativeModel(model_type)
         try:
-            response = model.generate_content(prompt + extra + transcript)
+            client = genai.Client(
+                api_key=os.getenv("GOOGLE_GEMINI_API_KEY")
+            )
+
+            response = client.models.generate_content(
+                model=model_type,
+                contents=prompt + extra + transcript
+            )
+
             return response.text
         except Exception as e:
             response_error = "⚠️ There is a problem with the API key or with python module."
             return response_error, str(e)
     
     @staticmethod
-    def openai_chatgpt(transcript, prompt, extra=""):
+    def openai_chatgpt(transcript, prompt, extra="", model_type="gpt-5-nano"):
         load_dotenv()
-        client = OpenAI(api_key=os.getenv("OPENAI_CHATGPT_API_KEY"))
-        model = "gpt-3.5-turbo"
-        message = [{"role": "system", "content": prompt + extra + transcript}]
         try:
-            response = client.chat.completions.create(model=model, messages=message)
-            return response.choices[0].message.content
+            client = OpenAI(
+                api_key=os.getenv("OPENAI_API_KEY")
+            )
+
+            response = client.responses.create(
+                model=model_type,
+                input=prompt + extra + transcript
+            )
+
+            return response.output_text
         except Exception as e:
             response_error = "⚠️ There is a problem with the API key or with python module."
             return response_error, str(e)
