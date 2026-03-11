@@ -39,7 +39,7 @@ This project is an AI-powered video summarizer designed specifically for YouTube
 
 - Automatic extraction of key insights and timestamps from YouTube videos.
 - Utilizes youtube-transcript-api for getting the transcripts/subtitles YouTube video.
-- Option for users to select AI models like *ChatGPT* or *Gemini* for summarization.
+- Option for users to select AI models like *GPT* or *Gemini* for summarization.
 - Efficiently summarizes videos, reducing viewing time while preserving essential information.
 
 ## Getting Started 🚀
@@ -66,14 +66,14 @@ pip install -r requirements.txt
 4. Create a ".env" file ⬇️ [add whichever is available]
 ```
 GOOGLE_GEMINI_API_KEY = "Your-Gemini-Key-Here"
-OPENAI_CHATGPT_API_KEY = "Your-Openai-Key-Here"
+OPENAI_API_KEY = "Your-Openai-Key-Here"
 ```
 
 ### Get API Keys:
 
 - [Google Gemini API key](https://makersuite.google.com/app/apikey) 🔑 
    
-- [OpenAI ChatGPT API key](https://platform.openai.com/signup) 🔑 
+- [OpenAI API key](https://platform.openai.com/signup) 🔑 
    
 
 5 Run the summarizer:
@@ -89,5 +89,5 @@ Contributions are welcome from the community!, Whether it's feedback, suggestion
 ## Acknowledgments
 
 - [Google Gemini](https://ai.google.dev/)
-- [OpenAI ChatGPT](https://help.openai.com/en/) 
+- [OpenAI GPT](https://help.openai.com/en/) 
 - [Krish Naik](https://www.youtube.com/user/krishnaik06) 
